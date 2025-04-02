@@ -48,7 +48,7 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 
 ## Screenshot
 
-![Widget Preview](./final_widget.jpeg)
+![Widget Preview](./9EC8BC3E-A931-4D8B-932D-B9357106C793.png)
 
 ## Built With
 
