@@ -1,65 +1,104 @@
 # Lock Screen Weather Widget
 
-<div>
-<img src="./A9E0459B-A18E-45E8-817A-B50A0EAACA75.png" alt="Lock Screen Weather Banner" style="width:100%; border-radius:8px;"/>
-</div>
-**A GPS-powered weather widget for Scriptable, built for iOS Lock Screens.**
+<p align="center">
+  <img src="./A9E0459B-A18E-45E8-817A-B50A0EAACA75.png" alt="Lock Screen Weather Banner" width="100%" style="border-radius:8px;" />
+</p>
+
+**A GPS-powered weather widget for Scriptable, made for iOS Lock Screens.**  
 Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your day.
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Built%20With-JavaScript-yellow?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Made%20For-Scriptable-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/license/Rickveloper/lockscreen-weather?style=for-the-badge"/>
+</p>
+
+---
 
 ## Features
 
-- **Live Temperature** in °F, straight from Open-Meteo
-- **Dynamic Emoji Forecast** based on real-time weather code
-- **Location-Aware**: Pulls your exact GPS and converts it to city/state
-- **Vibe Reading**: Weather isn't just numbers—it's a mood (e.g., "Cold AF")
-- **Last Updated Timestamp** so you know it’s fresh
-- **Beautiful Widget Design**: Centered, minimal, clean
+- **Live Temperature** in °F (via Open-Meteo)
+- **Emoji Forecast** matching weather vibes
+- **Location-Aware**: Automatically grabs city/state
+- **Vibe Reading**: Describes the weather in real language (e.g. _Cold AF_)
+- **Timestamp**: Shows last updated time
+- **Designed for iOS**: Centered, clean, Lock Screen-ready
+
+---
 
 ## Setup
 
 ### 1. Prerequisites
-
 - [Scriptable App](https://apps.apple.com/us/app/scriptable/id1405459188)
 - iOS 16+ with Lock Screen widget support
 
-### 2. Add the Scripts
+### 2. Scripts to Add
 
-- **Weather Display Script** → shows the widget
-- **Location Updater Script** → saves your current GPS to a file used by the display
+| Script Name              | Description                         |
+|--------------------------|-------------------------------------|
+| `Lockscreen Weather`     | Displays the widget                 |
+| `Update Weather Location`| Gets your current location silently |
 
-### 3. Create Shortcuts
+> Store both scripts inside Scriptable.
 
-- In the **Shortcuts** app, create a new shortcut:
-  - Action: “Run Script”
-  - Script: `Update Weather Location`
-  - Add to Lock Screen as a shortcut button
+### 3. Shortcut Automation (Optional but Recommended)
 
-### 4. Add Widget
+1. Open the **Shortcuts** app  
+2. Create a shortcut:  
+   - Action: **Run Script**  
+   - Script: `Update Weather Location`  
+3. Add it to your Lock Screen as a tap-to-refresh shortcut
 
-- Long press Lock Screen → Customize → Add Widget → Scriptable → Choose `Lockscreen Weather`
+### 4. Add the Widget
+
+- Long-press your Lock Screen → **Customize**
+- Add a **Scriptable** widget → select `Lockscreen Weather`
+
+---
 
 ## File System
 
-| File Name         | Purpose                    |
-|------------------|----------------------------|
-| `weather-loc.json` | Stores current lat/lon + timestamp |
-| `Lockscreen Weather` | Main display script |
-| `Update Weather Location` | Updates GPS location |
+| File                      | Purpose                               |
+|---------------------------|----------------------------------------|
+| `weather-loc.json`        | Stores GPS + timestamp for accuracy   |
+| `Lockscreen Weather.js`   | Widget display script                  |
+| `Update Weather Location.js` | Location grabber (runs silently)    |
 
-## Screenshot
+---
 
-![Widget Preview](./9EC8BC3E-A931-4D8B-932D-B9357106C793.png)
+## Demo
 
-## Built With
+<p align="center">
+  <img src="./9EC8BC3E-A931-4D8B-932D-B9357106C793.png" alt="Widget Screenshot" width="75%" />
+</p>
 
-- JavaScript (inside Scriptable)
-- [Open-Meteo API](https://open-meteo.com/)
-- [Nominatim Geocoding API](https://nominatim.org/release-docs/latest/api/Reverse/)
+---
+
+## APIs Used
+
+- [Open-Meteo Weather API](https://open-meteo.com/)
+- [Nominatim Reverse Geocoding](https://nominatim.org/release-docs/latest/api/Reverse/)
+
+---
 
 ## License
 
-MIT - Make it yours, remix it, go wild.
+[MIT](./LICENSE) — Free to remix, build on, or launch from
+
+---
 
 ## Credits
 
 Built with cold hands and a hot idea by [@Rickveloper](https://github.com/Rickveloper)
+
+---
+
+## Coming Soon
+
+- Light/dark theme toggle
+- Temperature in °C
+- Weather alerts
+- Home screen widget version
+- Animated icons
