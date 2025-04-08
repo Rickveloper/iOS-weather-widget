@@ -1,7 +1,7 @@
 # Lock Screen Weather Widget
 
 <p align="center">
-  <img src="./A9E0459B-A18E-45E8-817A-B50A0EAACA75.png" alt="Lock Screen Weather Banner" width="100%" style="border-radius:8px;" />
+  <img src="./lockscreen-banner.PNG" alt="Lock Screen Weather Banner" width="100%" style="border-radius:8px;" />
 </p>
 
 **A GPS-powered weather widget for Scriptable, made for iOS Lock Screens.**  
@@ -12,7 +12,7 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 <p align="center">
   <img src="https://img.shields.io/badge/Built%20With-JavaScript-yellow?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Made%20For-Scriptable-blue?style=for-the-badge"/>
-  <img src="https://img.shields.io/github/license/Rickveloper/lockscreen-weather?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/license/Rickveloper/iOS-weather-widget?style=for-the-badge"/>
 </p>
 
 ---
@@ -31,7 +31,6 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 ## Setup
 
 ### 1. Prerequisites
-
 - [Scriptable App](https://apps.apple.com/us/app/scriptable/id1405459188)
 - iOS 16+ with Lock Screen widget support
 
@@ -42,47 +41,45 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 | `Lockscreen Weather`     | Displays the widget                 |
 | `Update Weather Location`| Gets your current location silently |
 
-> Save both scripts in the Scriptable app
+> Store both scripts inside Scriptable.
 
-### 3. Shortcut Automation (Optional but Recommended)
+### 3. Shortcut + Automation (Optional but Recommended)
 
-Keep your widget fresh with a background automation and manual trigger.
+<p align="center">
+  <img src="./shortcut-example.jpg" alt="Shortcut Setup Example" width="85%" />
+</p>
 
 1. Open the **Shortcuts** app  
 2. Create a shortcut:  
-   - **Action**: Run Script  
-   - **Script**: `Update Weather Location`  
-3. (Optional) Add it to your Lock Screen as a tap-to-refresh shortcut  
-4. (Optional) Add an Automation:  
-   - **Trigger**: When Scriptable is opened  
-   - **Action**: Run `Update Weather Location`
+   - Action: **Run Script**  
+   - Script: `Update Weather Location`  
+3. Add it to your Lock Screen as a tap-to-refresh shortcut
+
+You can also automate location updates:
 
 <p align="center">
-  <img src="./D28DA2EE-C4D4-4472-ABF5-91D163B3553D.jpeg" alt="Shortcut Automation Example" width="75%" />
+  <img src="./automation-example.jpg" alt="Automation Example" width="85%" />
 </p>
 
-### 4. Add the Widget
+- Set it to run **when Scriptable opens** or on a schedule (e.g. every hour)
 
-- Long-press your Lock Screen → **Customize**
-- Add a **Scriptable** widget → Choose `Lockscreen Weather`
+---
+
+## Widget Demo
+
+<p align="center">
+  <img src="./widget-demo.PNG" alt="Weather Widget Demo" width="75%" />
+</p>
 
 ---
 
 ## File System
 
-| File                         | Purpose                               |
-|------------------------------|----------------------------------------|
-| `weather-loc.json`           | Stores GPS + timestamp for accuracy   |
-| `Lockscreen Weather.js`      | Widget display script                  |
-| `Update Weather Location.js` | Location grabber (runs silently)      |
-
----
-
-## Demo
-
-<p align="center">
-  <img src="./0833DAE2-CCCD-42B7-B184-0B982ED74EBF.jpeg" alt="Lock Screen Weather Demo" width="75%" />
-</p>
+| File                      | Purpose                               |
+|---------------------------|----------------------------------------|
+| `weather-loc.json`        | Stores GPS + timestamp for accuracy   |
+| `Lockscreen Weather.js`   | Widget display script                  |
+| `Update Weather Location.js` | Location grabber (runs silently)    |
 
 ---
 
