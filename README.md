@@ -1,7 +1,7 @@
 # Lock Screen Weather Widget
 
 <p align="center">
-  <img src="./lockscreen-banner.PNG" alt="Lock Screen Weather Banner" width="100%" style="border-radius:8px;" />
+  <img src="./lockscreen-banner.PNG" alt="Lockscreen Weather Banner" width="100%" style="border-radius:8px;" />
 </p>
 
 **A GPS-powered weather widget for Scriptable, made for iOS Lock Screens.**  
@@ -12,7 +12,7 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 <p align="center">
   <img src="https://img.shields.io/badge/Built%20With-JavaScript-yellow?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Made%20For-Scriptable-blue?style=for-the-badge"/>
-  <img src="https://img.shields.io/github/license/Rickveloper/iOS-weather-widget?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/license/Rickveloper/lockscreen-weather?style=for-the-badge"/>
 </p>
 
 ---
@@ -43,10 +43,12 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 
 > Store both scripts inside Scriptable.
 
-### 3. Shortcut + Automation (Optional but Recommended)
+### 3. Shortcuts (Optional but Recommended)
+
+Use this if you want a one-tap GPS refresh button on your Lock Screen:
 
 <p align="center">
-  <img src="./shortcut-example.jpg" alt="Shortcut Setup Example" width="85%" />
+  <img src="./shortcut-example.jpg" alt="Shortcut Example" width="75%" />
 </p>
 
 1. Open the **Shortcuts** app  
@@ -55,21 +57,18 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
    - Script: `Update Weather Location`  
 3. Add it to your Lock Screen as a tap-to-refresh shortcut
 
-You can also automate location updates:
+### 4. Automation (Optional)
+
+Want it to update automatically when Scriptable launches? Do this:
 
 <p align="center">
-  <img src="./automation-example.jpg" alt="Automation Example" width="85%" />
+  <img src="./automation-example.jpg" alt="Automation Example" width="75%" />
 </p>
 
-- Set it to run **when Scriptable opens** or on a schedule (e.g. every hour)
-
----
-
-## Widget Demo
-
-<p align="center">
-  <img src="./widget-demo.PNG" alt="Weather Widget Demo" width="75%" />
-</p>
+1. Open the **Shortcuts** app → Automation tab  
+2. Tap "+" → Create Personal Automation  
+3. Trigger: **App > Scriptable > Is Opened**  
+4. Add **Run Script** twice: once for `Update Weather Location`, once for `Lockscreen Weather`
 
 ---
 
@@ -83,6 +82,14 @@ You can also automate location updates:
 
 ---
 
+## Widget Demo
+
+<p align="center">
+  <img src="./widget-demo.PNG" alt="Widget Demo Screenshot" width="75%" />
+</p>
+
+---
+
 ## APIs Used
 
 - [Open-Meteo Weather API](https://open-meteo.com/)
@@ -92,7 +99,7 @@ You can also automate location updates:
 
 ## License
 
-[MIT](./LICENSE) — Free to remix, build on, or launch from
+[MIT](./LICENSE) — Free to remix, build on, or launch from.
 
 ---
 
