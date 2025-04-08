@@ -1,6 +1,14 @@
 # Lock Screen Weather Widget
 
 <p align="center">
+  <img src="./A9E0459B-A18E-45E8-817A-B50A0EAACA75.png" alt="Lock Screen Weather Banner" width="100%" style="border-radius:8px;" />
+</p>
+
+**A GPS-powered weather widget for Scriptable, made for iOS Lock Screens.**  
+Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your day.
+# Lock Screen Weather Widget
+
+<p align="center">
   <img src="./IMG_7933.jpeg" alt="Lock Screen Weather Banner" width="100%" style="border-radius:8px;" />
 </p>
 
