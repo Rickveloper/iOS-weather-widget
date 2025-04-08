@@ -53,21 +53,22 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 
 ---
 
-## 3. Shortcut Automation (Optional but 🔥 Recommended)
+### 3. Shortcut Automation (Optional but Recommended)
 
-<p align="center">
-  <img src="./IMG_7929.jpeg" alt="Shortcuts Setup Preview" width="70%" />
-</p>
+To keep your weather widget accurate, set up a Shortcut that updates location regularly:
 
 1. Open the **Shortcuts** app  
-2. Create a shortcut:  
-   - Action: **Run Script**  
-   - Script: `Update Weather Location`  
-3. (Optional) Add automation:  
-   - Trigger: When Scriptable opens  
-   - Action: Run both scripts silently
+2. Create a Shortcut:  
+   - **Action**: Run Script  
+   - **Script**: `Update Weather Location`  
+3. (Optional) Add it to your Lock Screen as a tap-to-refresh shortcut  
+4. (Optional) Add an Automation:  
+   - Trigger: **When Scriptable is Opened**  
+   - Action: **Run Script** → `Update Weather Location`
 
----
+<p align="center">
+  <img src="./D28DA2EE-C4D4-4472-ABF5-91D163B3553D.jpeg" alt="Shortcut Automation" width="75%" />
+</p>
 
 ## 4. Add the Widget
 
