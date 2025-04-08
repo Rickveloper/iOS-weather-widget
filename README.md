@@ -1,43 +1,114 @@
+# Lock Screen Weather Widget
+
+<p align="center">
+  <img src="./IMG_7933.jpeg" alt="Lock Screen Weather Banner" width="100%" style="border-radius:8px;" />
+</p>
+
+**A GPS-powered weather widget for Scriptable, made for iOS Lock Screens.**  
+Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your day.
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Built%20With-JavaScript-yellow?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Made%20For-Scriptable-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/license/Rickveloper/iOS-weather-widget?style=for-the-badge"/>
+</p>
+
+---
+
+## Features
+
+- **Live Temperature** in °F (via Open-Meteo)
+- **Emoji Forecast** matching weather vibes
+- **Location-Aware**: Automatically grabs city/state
+- **Vibe Reading**: Describes the weather in real language (e.g. _Cold AF_)
+- **Timestamp**: Shows last updated time
+- **Designed for iOS**: Centered, clean, Lock Screen-ready
+
+---
+
 ## Setup
 
 ### 1. Prerequisites
 - [Scriptable App](https://apps.apple.com/us/app/scriptable/id1405459188)
 - iOS 16+ with Lock Screen widget support
 
-### 2. Add These Scripts to Scriptable
+### 2. Scripts to Add
 
-| Script Name              | Purpose                                 |
-|--------------------------|------------------------------------------|
-| `Lockscreen Weather`     | Displays weather with emoji + vibe       |
-| `Update Weather Location`| Gets your current GPS silently           |
+| Script Name              | Description                         |
+|--------------------------|-------------------------------------|
+| `Lockscreen Weather`     | Displays the widget                 |
+| `Update Weather Location`| Gets your current location silently |
 
-> You can paste each script into a new file in Scriptable.
+> Store both scripts inside Scriptable.
 
-### 3. Add Shortcuts (Optional but Recommended)
+---
 
-Use the **Shortcuts** app to add a quick GPS refresh button:
+## 3. Shortcut Automation (Optional but 🔥 Recommended)
 
-1. Open the **Shortcuts** app
-2. Tap **+**, name it something like `Update Weather`
-3. Add action: **Run Script**
-4. Choose script: `Update Weather Location`
-5. Save the shortcut
-6. Add it to your Lock Screen as a shortcut button for manual refresh
+<p align="center">
+  <img src="./IMG_7929.jpeg" alt="Shortcuts Setup Preview" width="70%" />
+</p>
 
-### 4. Automation (Optional)
+1. Open the **Shortcuts** app  
+2. Create a shortcut:  
+   - Action: **Run Script**  
+   - Script: `Update Weather Location`  
+3. (Optional) Add automation:  
+   - Trigger: When Scriptable opens  
+   - Action: Run both scripts silently
 
-You can also auto-refresh your location every time **Scriptable** opens:
+---
 
-1. Go to the **Shortcuts** app → Automations
-2. Create a new **Personal Automation**
-3. Trigger: **When “Scriptable” is opened**
-4. Actions:
-   - Run Script → `Update Weather Location`
-   - (Optional) Run Script → `Lockscreen Weather`
-5. Turn OFF "Ask Before Running" and "Notify When Run"
+## 4. Add the Widget
 
-### 5. Add the Widget
+- Long-press your Lock Screen → **Customize**
+- Add a **Scriptable** widget → select `Lockscreen Weather`
 
-1. Long press your Lock Screen → **Customize**
-2. Tap **Add Widget** → Select **Scriptable**
-3. Choose the `Lockscreen Weather` script
+---
+
+## File System
+
+| File                        | Purpose                               |
+|-----------------------------|----------------------------------------|
+| `weather-loc.json`          | Stores GPS + timestamp for accuracy   |
+| `Lockscreen Weather.js`     | Widget display script                  |
+| `Update Weather Location.js`| Location grabber (runs silently)      |
+
+---
+
+## Demo
+
+<p align="center">
+  <img src="./IMG_7933.jpeg" alt="Lock Screen Demo" width="80%" />
+</p>
+
+---
+
+## APIs Used
+
+- [Open-Meteo Weather API](https://open-meteo.com/)
+- [Nominatim Reverse Geocoding](https://nominatim.org/release-docs/latest/api/Reverse/)
+
+---
+
+## License
+
+[MIT](./LICENSE) — Free to remix, build on, or launch from
+
+---
+
+## Credits
+
+Built with cold hands and a hot idea by [@Rickveloper](https://github.com/Rickveloper)
+
+---
+
+## Coming Soon
+
+- Light/dark theme toggle
+- Temperature in °C
+- Weather alerts
+- Home screen widget version
+- Animated icons
