@@ -215,3 +215,91 @@ Script.setWidget(widget);
 Script.complete();
 </details>
 ```
+<details>
+<summary><strong>▶ Lockscreen Weather.js</strong></summary>
+
+```js
+// Lockscreen Weather Widget — Centered Version
+let fm = FileManager.local();
+let path = fm.joinPath(fm.documentsDirectory(), "weather-loc.json");
+
+// Fallback if weather-loc.json is missing or broken
+let locData = { latitude: 43.15, longitude: -70.65 };
+if (fm.fileExists(path)) {
+  try {
+    locData = JSON.parse(fm.readString(path));
+  } catch {}
+}
+
+let lat = locData.latitude;
+let lon = locData.longitude;
+
+// Fetch weather data
+let weather = await new Request(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode&temperature_unit=fahrenheit`).loadJSON();
+let geo = await new Request(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`).loadJSON();
+
+let tempF = Math.round(weather.current.temperature_2m);
+let code = weather.current.weathercode;
+let city = geo.address.city || geo.address.town || geo.address.village || geo.address.hamlet || "";
+
+// Hard-coded emoji based on weather code
+let emoji = "☁️"; // Default cloud emoji
+if (code == 0) emoji = "☀️";
+else if (code <= 2) emoji = "🌤";
+else if (code <= 3) emoji = "☁️";
+else if (code <= 48) emoji = "🌫";
+else if (code <= 67) emoji = "🌧";
+else if (code <= 77) emoji = "❄️";
+else if (code <= 99) emoji = "⛈";
+
+// Full vibe text
+let vibe = tempF < 40 ? "Cold AF" :
+           tempF < 60 ? "Hoodie Szn" :
+           tempF < 75 ? "Perfect" :
+           tempF < 90 ? "Sweaty" : "Scorchin";
+
+// Create widget with multi-line layout
+let widget = new ListWidget();
+widget.setPadding(5, 8, 5, 8);
+widget.backgroundColor = new Color("#111111", 1);
+
+// First line: emoji and temperature only - centered
+let tempLine = widget.addText(`${emoji} ${tempF}°`);
+tempLine.font = Font.boldSystemFont(16);
+tempLine.textColor = Color.white();
+tempLine.lineLimit = 1;
+tempLine.centerAlignText();
+
+// Second line: vibe text - centered
+let vibeLine = widget.addText(`${vibe}`);
+vibeLine.font = Font.mediumSystemFont(14);
+vibeLine.textColor = Color.white();
+vibeLine.lineLimit = 1;
+vibeLine.centerAlignText();
+
+widget.addSpacer(4);
+
+// Location line with just city - centered
+let locLine = widget.addText(`📍 ${city}`);
+locLine.font = Font.mediumSystemFont(12);
+locLine.textColor = Color.white();
+locLine.lineLimit = 1;
+locLine.centerAlignText();
+
+widget.addSpacer(2);
+
+// Update time - centered
+let updated = new Date().toLocaleTimeString([], {
+  hour: "2-digit",
+  minute: "2-digit"
+});
+let timeLine = widget.addText(`Updated: ${updated}`);
+timeLine.font = Font.systemFont(10);
+timeLine.textColor = Color.white();
+timeLine.lineLimit = 1;
+timeLine.centerAlignText();
+
+Script.setWidget(widget);
+Script.complete();
+</details>
+```
