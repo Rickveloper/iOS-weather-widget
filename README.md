@@ -212,4 +212,6 @@ timeLine.lineLimit = 1;
 timeLine.centerAlignText();
 
 Script.setWidget(widget);
-Script.complete();</details>
+Script.complete();
+</details>
+```
