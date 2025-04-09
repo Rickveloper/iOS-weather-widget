@@ -214,6 +214,7 @@ timeLine.centerAlignText();
 Script.setWidget(widget);
 Script.complete();
 </details>
+```
 <p align="center">
   <img src="./widget-demo.PNG" alt="Widget Demo Screenshot" width="75%" />
 </p>
