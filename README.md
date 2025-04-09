@@ -81,7 +81,7 @@ Want it to update automatically when Scriptable launches? Do this:
 | `Lockscreen Weather.js`     | Widget display script                  |
 | `Update Weather Location.js`| Location grabber (runs silently)      |
 
-⸻
+---
 
 Widget Demo
 <p align="center">
@@ -89,25 +89,25 @@ Widget Demo
 </p>
 
 
-⸻
+---
 
 APIs Used
 	•	Open-Meteo Weather API
 	•	Nominatim Reverse Geocoding
 
-⸻
+---
 
 License
 
 MIT — Free to remix, build on, or launch from.
 
-⸻
+---
 
 Credits
 
 Built with cold hands and a hot idea by @Rickveloper
 
-⸻
+---
 
 Coming Soon
 	•	Light/dark theme toggle
