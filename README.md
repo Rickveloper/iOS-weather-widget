@@ -303,3 +303,37 @@ Script.setWidget(widget);
 Script.complete();
 </details>
 ```
+⸻
+
+Widget Demo
+<p align="center">
+  <img src="./widget-demo.PNG" alt="Widget Demo Screenshot" width="75%" />
+</p>
+
+
+⸻
+
+APIs Used
+	•	Open-Meteo Weather API
+	•	Nominatim Reverse Geocoding
+
+⸻
+
+License
+
+MIT — Free to remix, build on, or launch from.
+
+⸻
+
+Credits
+
+Built with cold hands and a hot idea by @Rickveloper
+
+⸻
+
+Coming Soon
+	•	Light/dark theme toggle
+	•	Temperature in °C
+	•	Weather alerts
+	•	Home screen widget version
+	•	Animated icons
