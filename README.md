@@ -139,6 +139,7 @@ Script.complete();
 </details>
 <details>
 <summary><strong>▶ Lockscreen Weather.js</strong></summary>
+```js
 // Lockscreen Weather Widget — Centered Version
 let fm = FileManager.local();
 let path = fm.joinPath(fm.documentsDirectory(), "weather-loc.json");
