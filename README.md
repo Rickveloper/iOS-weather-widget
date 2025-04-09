@@ -31,15 +31,16 @@ Stay updated with hyperlocal, emoji-coded forecasts that match the vibe of your 
 ## Setup
 
 ### 1. Prerequisites
+
 - [Scriptable App](https://apps.apple.com/us/app/scriptable/id1405459188)
 - iOS 16+ with Lock Screen widget support
 
 ### 2. Scripts to Add
 
-| Script Name              | Description                         |
-|--------------------------|-------------------------------------|
-| `Lockscreen Weather`     | Displays the widget                 |
-| `Update Weather Location`| Gets your current location silently |
+| Script Name               | Description                          |
+|---------------------------|--------------------------------------|
+| `Lockscreen Weather`      | Displays the widget                  |
+| `Update Weather Location` | Gets your current location silently  |
 
 > Store both scripts inside Scriptable.
 
@@ -72,47 +73,164 @@ Want it to update automatically when Scriptable launches? Do this:
 
 ---
 
-## File System
+## File System + Scripts
 
-| File                      | Purpose                               |
-|---------------------------|----------------------------------------|
-| `weather-loc.json`        | Stores GPS + timestamp for accuracy   |
-| `Lockscreen Weather.js`   | Widget display script                  |
-| `Update Weather Location.js` | Location grabber (runs silently)    |
+| File                        | Purpose                               |
+|-----------------------------|----------------------------------------|
+| `weather-loc.json`          | Stores GPS + timestamp for accuracy   |
+| `Lockscreen Weather.js`     | Widget display script                  |
+| `Update Weather Location.js`| Location grabber (runs silently)      |
 
----
+<details>
+<summary><strong>▶ Update Weather Location.js</strong></summary>
 
-## Widget Demo
+```js
+// Weather Location Updater — Enhanced Version
+// This script updates your location data for the weather widget silently
 
-<p align="center">
-  <img src="./widget-demo.PNG" alt="Widget Demo Screenshot" width="75%" />
-</p>
+// Get file system access
+let fm = FileManager.local();
+let path = fm.joinPath(fm.documentsDirectory(), "weather-loc.json");
 
----
+// Create notification to show while updating
+let notification = new Notification();
+notification.title = "Updating Location";
+notification.subtitle = "Getting current coordinates...";
+notification.schedule();
 
-## APIs Used
+// Try to get location with better accuracy and timeout settings
+try {
+  // Set up location options for better accuracy
+Location.setAccuracyToBest();
+  
+  // Request current location with timeout
+  let loc = await Location.current();
+  let timestamp = new Date().toISOString();
+  
+  // Read existing data if available to preserve other settings
+  let existingData = {};
+  if (fm.fileExists(path)) {
+    try {
+      existingData = JSON.parse(fm.readString(path));
+    } catch (e) {
+      console.log("Error reading existing data: " + e);
+    }
+  }
+  
+  // Create new data object with updated location and timestamp
+  let data = {
+    ...existingData,  // Keep any other existing data
+    latitude: loc.latitude,
+    longitude: loc.longitude,
+    timestamp: timestamp,
+    lastUpdated: new Date().toLocaleString()
+  };
+  
+  // Write the updated data to storage
+  fm.writeString(path, JSON.stringify(data, null, 2));
+  
+  // Show success notification
+  notification = new Notification();
+  notification.title = "Location Updated";
+  notification.subtitle = "Weather data will refresh on next widget load";
+  notification.schedule();
+  
+} catch (e) {
+  // Show error notification if something went wrong
+  notification = new Notification();
+  notification.title = "Location Update Failed";
+  notification.subtitle = "Please try again later";
+  notification.body = e.toString();
+  notification.schedule();
+  
+  console.error("Error updating location: " + e);
+}
 
-- [Open-Meteo Weather API](https://open-meteo.com/)
-- [Nominatim Reverse Geocoding](https://nominatim.org/release-docs/latest/api/Reverse/)
+// Complete the script
+Script.complete();
+</details>
+<details>
+<summary><strong>▶ Lockscreen Weather.js</strong></summary>
+// Lockscreen Weather Widget — Centered Version
+let fm = FileManager.local();
+let path = fm.joinPath(fm.documentsDirectory(), "weather-loc.json");
 
----
+// Fallback if weather-loc.json is missing or broken
+let locData = { latitude: 43.15, longitude: -70.65 };
+if (fm.fileExists(path)) {
+  try {
+    locData = JSON.parse(fm.readString(path));
+  } catch {}
+}
 
-## License
+let lat = locData.latitude;
+let lon = locData.longitude;
 
-[MIT](./LICENSE) — Free to remix, build on, or launch from.
+// Fetch weather data
+let weather = await new Request(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode&temperature_unit=fahrenheit`).loadJSON();
+let geo = await new Request(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`).loadJSON();
 
----
+let tempF = Math.round(weather.current.temperature_2m);
+let code = weather.current.weathercode;
+let city = geo.address.city || geo.address.town || geo.address.village || geo.address.hamlet || "";
 
-## Credits
+// Hard-coded emoji based on weather code
+let emoji = "☁️"; // Default cloud emoji
+if (code == 0) emoji = "☀️";
+else if (code <= 2) emoji = "🌤";
+else if (code <= 3) emoji = "☁️";
+else if (code <= 48) emoji = "🌫";
+else if (code <= 67) emoji = "🌧";
+else if (code <= 77) emoji = "❄️";
+else if (code <= 99) emoji = "⛈";
 
-Built with cold hands and a hot idea by [@Rickveloper](https://github.com/Rickveloper)
+// Full vibe text
+let vibe = tempF < 40 ? "Cold AF" :
+           tempF < 60 ? "Hoodie Szn" :
+           tempF < 75 ? "Perfect" :
+           tempF < 90 ? "Sweaty" : "Scorchin";
 
----
+// Create widget with multi-line layout
+let widget = new ListWidget();
+widget.setPadding(5, 8, 5, 8);
+widget.backgroundColor = new Color("#111111", 1);
 
-## Coming Soon
+// First line: emoji and temperature only - centered
+let tempLine = widget.addText(`${emoji} ${tempF}°`);
+tempLine.font = Font.boldSystemFont(16);
+tempLine.textColor = Color.white();
+tempLine.lineLimit = 1;
+tempLine.centerAlignText();
 
-- Light/dark theme toggle
-- Temperature in °C
-- Weather alerts
-- Home screen widget version
-- Animated icons
+// Second line: vibe text - centered
+let vibeLine = widget.addText(`${vibe}`);
+vibeLine.font = Font.mediumSystemFont(14);
+vibeLine.textColor = Color.white();
+vibeLine.lineLimit = 1;
+vibeLine.centerAlignText();
+
+widget.addSpacer(4);
+
+// Location line with just city - centered
+let locLine = widget.addText(`📍 ${city}`);
+locLine.font = Font.mediumSystemFont(12);
+locLine.textColor = Color.white();
+locLine.lineLimit = 1;
+locLine.centerAlignText();
+
+widget.addSpacer(2);
+
+// Update time - centered
+let updated = new Date().toLocaleTimeString([], {
+  hour: "2-digit",
+  minute: "2-digit"
+});
+let timeLine = widget.addText(`Updated: ${updated}`);
+timeLine.font = Font.systemFont(10);
+timeLine.textColor = Color.white();
+timeLine.lineLimit = 1;
+timeLine.centerAlignText();
+
+Script.setWidget(widget);
+Script.complete();
+</details>
