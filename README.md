@@ -151,6 +151,7 @@ Script.complete();
 </details>
 <details>
 <summary><strong>▶ Lockscreen Weather.js</strong></summary>
+```js
 // Lockscreen Weather Widget — Centered Version
 let fm = FileManager.local();
 let path = fm.joinPath(fm.documentsDirectory(), "weather-loc.json");
@@ -234,3 +235,30 @@ timeLine.centerAlignText();
 Script.setWidget(widget);
 Script.complete();
 </details>
+<p align="center">
+  <img src="./widget-demo.PNG" alt="Widget Demo Screenshot" width="75%" />
+</p>
+APIs Used
+	•	Open-Meteo Weather API
+	•	Nominatim Reverse Geocoding
+
+⸻
+
+License
+
+MIT — Free to remix, build on, or launch from.
+
+⸻
+
+Credits
+
+Built with cold hands and a hot idea by @Rickveloper
+
+⸻
+
+Coming Soon
+	•	Light/dark theme toggle
+	•	Temperature in °C
+	•	Weather alerts
+	•	Home screen widget version
+	•	Animated icons
