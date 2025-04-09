@@ -149,9 +149,6 @@ Location.setAccuracyToBest();
 // Complete the script
 Script.complete();
 </details>
-<details>
-<summary><strong>▶ Lockscreen Weather.js</strong></summary>
-```js
 // Lockscreen Weather Widget — Centered Version
 let fm = FileManager.local();
 let path = fm.joinPath(fm.documentsDirectory(), "weather-loc.json");
@@ -235,9 +232,16 @@ timeLine.centerAlignText();
 Script.setWidget(widget);
 Script.complete();
 </details>
+
+⸻
+
+Widget Demo
 <p align="center">
   <img src="./widget-demo.PNG" alt="Widget Demo Screenshot" width="75%" />
 </p>
+
+⸻
+
 APIs Used
 	•	Open-Meteo Weather API
 	•	Nominatim Reverse Geocoding
